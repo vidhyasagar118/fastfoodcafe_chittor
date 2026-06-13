@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./Categories.css";
-
+import API from "../api";
 const Categories = () => {
   const navigate = useNavigate();
 
@@ -14,9 +13,7 @@ const Categories = () => {
   }, []);
 
   const fetchCategories = async () => {
-    const res = await axios.get(
-      "http://localhost:5000/api/categories"
-    );
+    const res = await API.get("/categories");
 
     setCategories(res.data);
   };
@@ -24,22 +21,16 @@ const Categories = () => {
   const addCategory = async () => {
     if (!newCategory.trim()) return;
 
-    await axios.post(
-      "http://localhost:5000/api/categories",
-      {
-        name: newCategory,
-      }
-    );
+  await API.post("/categories", {
+  name: newCategory,
+});
 
     setNewCategory("");
     fetchCategories();
   };
 
   const deleteCategory = async (id) => {
-    await axios.delete(
-      `http://localhost:5000/api/categories/${id}`
-    );
-
+await API.delete(`/categories/${id}`);
     fetchCategories();
   };
 

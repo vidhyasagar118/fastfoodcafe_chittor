@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../api";
 import "./Checkout.css";
-
+import axios from "axios";
 const Checkout = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -121,18 +121,14 @@ if (!email) {
   if (!validateForm()) return;
 
   try {
-    await axios.post(
-  "http://localhost:5000/api/orders/place",
-  {
-    customerName: address.name,
-    email: email, // add this
-    phone: address.phone,
-    address: `${address.house}, ${address.road}, ${address.city}, ${address.district}, ${address.state} - ${address.pincode}`,
-    items: cart,
-    total,
-  }
-);
-
+   await API.post("/orders/place", {
+  customerName: address.name,
+  email,
+  phone: address.phone,
+  address: `${address.house}, ${address.road}, ${address.city}, ${address.district}, ${address.state} - ${address.pincode}`,
+  items: cart,
+  total,
+});
     alert("Order Placed Successfully");
 
     localStorage.removeItem(`cart_${email}`);

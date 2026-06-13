@@ -1,7 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-
+import API from "../api";
 const AllProducts = () => {
 
   const [products, setProducts] = useState([]);
@@ -13,18 +12,12 @@ const AllProducts = () => {
   }, []);
 
   const fetchProducts = async () => {
-    const res = await axios.get(
-      "http://localhost:5000/api/products"
-    );
-
+   const res = await API.get("/products");
     setProducts(res.data);
   };
 
   const fetchCategories = async () => {
-    const res = await axios.get(
-      "http://localhost:5000/api/categories"
-    );
-
+   const res = await API.get("/categories");
     setCategories(res.data);
   };
 

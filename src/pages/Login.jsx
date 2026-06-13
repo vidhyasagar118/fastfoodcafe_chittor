@@ -1,7 +1,7 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import "./Login.css";
-import axios from "axios";
+import API from "../api";
 const Login = () => {
 
   const userName =
@@ -39,14 +39,14 @@ const Login = () => {
 
     try {
 
-      await axios.post(
-        "http://localhost:5000/api/auth/google-login",
-        {
-          name: user.name,
-          email: user.email,
-          picture: user.picture,
-        }
-      );
+     await API.post(
+  "/auth/google-login",
+  {
+    name: user.name,
+    email: user.email,
+    picture: user.picture,
+  }
+);
 
       localStorage.setItem(
         "userName",

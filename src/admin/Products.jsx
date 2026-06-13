@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import API from "../api";
 import { useEffect, useState } from "react";
 import "./Products.css";
 
@@ -29,9 +29,9 @@ const Products = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/products/category/${category}`
-      );
+const res = await API.get(
+  `/products/category/${category}`
+);
 
       setProducts(res.data);
     } catch (err) {
@@ -41,10 +41,10 @@ const Products = () => {
 
   const addProduct = async () => {
     try {
-      await axios.post(
-        "http://localhost:5000/api/products/add",
-        form
-      );
+      await API.post(
+  "/products/add",
+  form
+);
 
       alert("Product Added");
 
@@ -66,10 +66,10 @@ const Products = () => {
 
   const updateProduct = async () => {
     try {
-      await axios.put(
-        `http://localhost:5000/api/products/${editing}`,
-        form
-      );
+await API.put(
+  `/products/${editing}`,
+  form
+);
 
       alert("Product Updated");
 
@@ -93,10 +93,9 @@ const Products = () => {
 
   const deleteProduct = async (id) => {
     try {
-      await axios.delete(
-        `http://localhost:5000/api/products/${id}`
-      );
-
+    await API.delete(
+  `/products/${id}`
+);
       fetchProducts();
     } catch (err) {
       console.log(err);
@@ -111,12 +110,12 @@ const Products = () => {
     if (!discount) return;
 
     try {
-      await axios.put(
-        `http://localhost:5000/api/products/discount/${id}`,
-        {
-          discount,
-        }
-      );
+     await API.put(
+  `/products/discount/${id}`,
+  {
+    discount,
+  }
+);
 
       fetchProducts();
     } catch (err) {

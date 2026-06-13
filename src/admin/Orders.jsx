@@ -1,7 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import "./AdminOrders.css";
-
+import API from "../api";
 const Orders = () => {
 
 const [orders, setOrders] = useState([]);
@@ -11,30 +10,27 @@ useEffect(() => {
 }, []);
 
 const fetchOrders = async () => {
-  const res = await axios.get(
-    "http://localhost:5000/api/orders"
-  );
+  const res = await API.get("/orders");
 
   setOrders(res.data);
 };
 
   const updateStatus = async (id) => {
-  await axios.put(
-    `http://localhost:5000/api/orders/${id}`,
-    {
-      status: "Delivered"
-    }
-  );
-
+  await API.put(
+  `/orders/${id}`,
+  {
+    status: "Delivered",
+  }
+);
   fetchOrders();
 };
 const cancelOrder = async (id) => {
-  await axios.put(
-    `http://localhost:5000/api/orders/${id}`,
-    {
-      status: "Cancelled",
-    }
-  );
+  await API.put(
+  `/orders/${id}`,
+  {
+    status: "Cancelled",
+  }
+);
 
   fetchOrders();
 };
@@ -98,9 +94,7 @@ const cancelOrder = async (id) => {
 
                   </td>
 
-                  <td>
-             
-<td className="action-buttons">
+                 <td className="action-buttons">
   <button
     className="action-btn deliver-btn"
     onClick={() => updateStatus(order._id)}
@@ -115,8 +109,6 @@ const cancelOrder = async (id) => {
     Cancel
   </button>
 </td>
-
-                  </td>
                   
 
                 </tr>

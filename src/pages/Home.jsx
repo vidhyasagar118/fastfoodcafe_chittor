@@ -1,10 +1,8 @@
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import API from "../api";
 import { useEffect, useState } from "react";
 import CategorySection from "../components/CategorySection";
 import "./Home.css";
-import { Navigate } from "react-router-dom";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -18,17 +16,12 @@ useEffect(() => {
 }, []);
 
 const fetchCategories = async () => {
-  const res = await axios.get(
-    "http://localhost:5000/api/categories"
-  );
-
+  const res = await API.get("/categories");
   setCategories(res.data);
 };
 const fetchProducts = async () => {
   try {
-    const res = await axios.get(
-      "http://localhost:5000/api/products"
-    );
+const res = await API.get("/products");
 
     setProducts(res.data);
 

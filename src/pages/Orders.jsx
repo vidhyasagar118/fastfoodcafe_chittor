@@ -1,7 +1,6 @@
 import "./Orders.css";
-import axios from "axios";
 import { useEffect, useState } from "react";
-
+import API from "../api";
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const email = localStorage.getItem("userEmail");
@@ -12,10 +11,10 @@ const Orders = () => {
       return;
     }
 
-    axios
-      .get(`http://localhost:5000/api/orders/user/${email}`)
-      .then((res) => setOrders(res.data))
-      .catch((err) => console.log(err));
+  API
+  .get(`/orders/user/${email}`)
+  .then((res) => setOrders(res.data))
+  .catch((err) => console.log(err));
   }, [email]);
 
   return (

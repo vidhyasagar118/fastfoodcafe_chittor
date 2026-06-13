@@ -1,7 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
 import "./Contact.css";
-
+import API from "../api";
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -23,11 +22,10 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/contact",
-        formData
-      );
-
+     const res = await API.post(
+  "/contact",
+  formData
+);
       setMsg(res.data.message);
 
       setFormData({
