@@ -2,8 +2,9 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import "./Login.css";
 import API from "../api";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
-
+    const navigate=useNavigate();
   const userName =
     localStorage.getItem("userName");
 
@@ -79,31 +80,42 @@ const Login = () => {
 
         ) : (
 
-          <>
-            <img
-              src={localStorage.getItem("userPhoto")}
-              alt="Profile"
-              style={{
-                width: "100px",
-                borderRadius: "50%",
-              }}
-            />
+       <>
+  <div className="profile-card">
 
-            <h2>
-              Welcome {userName}
-            </h2>
+    <img
+      src={localStorage.getItem("userPhoto")}
+      alt="Profile"
+      className="profile-img"
+    />
 
-            <p>
-              {userEmail}
-            </p>
+    <h2>{userName}</h2>
 
-            <button
-              onClick={logout}
-              className="logout-btn"
-            >
-              Logout
-            </button>
-          </>
+    <p>{userEmail}</p>
+
+    <div className="action-row">
+      <button
+        onClick={() => navigate("/orders")}
+      >
+        📦 Orders
+      </button>
+
+      <button
+        onClick={() => navigate("/cart")}
+      >
+        🛒 Cart
+      </button>
+    </div>
+
+    <button
+      onClick={logout}
+      className="logout-btn"
+    >
+      🚪 Logout
+    </button>
+
+  </div>
+</>
 
         )}
 

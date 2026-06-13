@@ -1,47 +1,11 @@
 import { useState } from "react";
 import "./ProductCard.css";
-
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 const ProductCard = ({ item }) => {
 
   const [qty, setQty] = useState(1);
-
-  const addToCart = () => {
-
-const email =
-localStorage.getItem("userEmail");
-
-const cart =
-JSON.parse(
-  localStorage.getItem(`cart_${email}`)
-) || [];
-
-const exist = cart.find(
- p => p._id === item._id
-);
-
-    if(exist){
-
-      exist.qty += qty;
-
-    }else{
-
-      cart.push({
-        ...item,
-        qty
-      });
-
-    }
-
-   localStorage.setItem(
-  `cart_${email}`,
-  JSON.stringify(cart)
-);
-
-    alert(
-      `${item.name} Added To Cart`
-    );
-  };
-
+const { addToCart } = useContext(CartContext);
   return (
     <div className="product-card">
 
@@ -122,13 +86,18 @@ item.discount > 0 ? (
 
         </div>
 
-        <button
-          className="cart-btn"
-          onClick={addToCart}
-        >
-          Add To Cart
-        </button>
+       <button
+  className="cart-btn"
+  onClick={() => {
+    for(let i=0;i<qty;i++){
+      addToCart(item);
+    }
 
+    alert(`${item.name} Added To Cart`);
+  }}
+>
+  Add To Cart
+</button>
       </div>
 
     </div>

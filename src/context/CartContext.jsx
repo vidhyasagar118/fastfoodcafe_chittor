@@ -34,74 +34,58 @@ useEffect(() => {
 
   /* Add Item */
 
-  const addToCart = (item) => {
-
-    const exist = cart.find(
+ const addToCart = (item) => {
+  setCart((prevCart) => {
+    const exist = prevCart.find(
       (x) => x._id === item._id
     );
 
     if (exist) {
-
-      setCart(
-        cart.map((x) =>
-          x._id === item._id
-            ? {
-                ...x,
-                qty: x.qty + 1,
-              }
-            : x
-        )
-      );
-
-    } else {
-
-      setCart([
-        ...cart,
-        {
-          ...item,
-          qty: 1,
-        },
-      ]);
-
-    }
-  };
-
-  /* Increase Qty */
-
-  const increase = (id) => {
-
-    setCart(
-      cart.map((x) =>
-        x._id === id
+      return prevCart.map((x) =>
+        x._id === item._id
           ? {
               ...x,
               qty: x.qty + 1,
             }
           : x
-      )
-    );
+      );
+    }
 
-  };
+    return [
+      ...prevCart,
+      {
+        ...item,
+        qty: 1,
+      },
+    ];
+  });
+};
+
+  /* Increase Qty */
+const increase = (id) => {
+  setCart((prevCart) =>
+    prevCart.map((x) =>
+      x._id === id
+        ? { ...x, qty: x.qty + 1 }
+        : x
+    )
+  );
+};
 
   /* Decrease Qty */
+const decrease = (id) => {
+  setCart((prevCart) =>
+    prevCart
+      .map((x) =>
+        x._id === id
+          ? { ...x, qty: x.qty - 1 }
+          : x
+      )
+      .filter((x) => x.qty > 0)
+  );
+};
 
-  const decrease = (id) => {
-
-    setCart(
-      cart
-        .map((x) =>
-          x._id === id
-            ? {
-                ...x,
-                qty: x.qty - 1,
-              }
-            : x
-        )
-        .filter((x) => x.qty > 0)
-    );
-
-  };
-
+  
   /* Remove Item */
 
   const removeItem = (id) => {

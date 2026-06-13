@@ -45,7 +45,7 @@ const res = await API.get(
   "/products/add",
   form
 );
-
+    
       alert("Product Added");
 
       setForm({

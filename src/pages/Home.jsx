@@ -44,8 +44,10 @@ const res = await API.get("/products");
           <button className="hero-btn"  onClick={()=>{navigate("allproducts")}}>
             Order Now
           </button>
+          
 
         </div>
+        
       </section>
 
       <div className="offer-banner">

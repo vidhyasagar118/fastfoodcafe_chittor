@@ -91,3 +91,35 @@
     justify-content: center;
   }
 }
+.search-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
+}
+
+.search-box input {
+  width: 100%;
+  max-width: 400px;
+
+  padding: 12px 20px;
+
+  border: none;
+  border-radius: 50px;
+
+  background: white;
+
+  font-size: 15px;
+
+  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+
+  transition: .3s;
+}
+
+.search-box input:focus {
+  outline: none;
+
+  transform: scale(1.02);
+
+  box-shadow: 0 8px 20px rgba(255,0,0,.15);
+}

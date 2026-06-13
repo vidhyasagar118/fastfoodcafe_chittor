@@ -1,11 +1,14 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api";
+import { useState, useEffect } from "react";
 import "./Checkout.css";
 import axios from "axios";
 const Checkout = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const [savedAddresses, setSavedAddresses] = useState([]);
+const [saveAddress, setSaveAddress] = useState(false);
+const [addressType, setAddressType] = useState("Home");
   const [address, setAddress] = useState({
     name: "",
     phone: "",
@@ -73,6 +76,7 @@ const cart =
   setErrors(newErrors);
 
   return Object.keys(newErrors).length === 0;
+ 
 };
  
 
@@ -110,6 +114,7 @@ const getLocation = () => {
   );
 };
 
+
 const placeOrder = async () => {
   const email = localStorage.getItem("userEmail");
 console.log(cart);
@@ -129,6 +134,19 @@ if (!email) {
   items: cart,
   total,
 });
+if (saveAddress) {
+  await API.post("/address/save", {
+    email,
+    type: addressType,
+
+    house: address.house,
+    road: address.road,
+    city: address.city,
+    district: address.district,
+    state: address.state,
+    pincode: address.pincode,
+  });
+}
     alert("Order Placed Successfully");
 
     localStorage.removeItem(`cart_${email}`);
@@ -149,13 +167,25 @@ if (!email) {
     console.log(error);
     alert("Order Failed");
   }
-};  return (
+
+};  
+useEffect(() => {
+  if (email) {
+    API.get(`/address/${email}`)
+      .then((res) => setSavedAddresses(res.data))
+      .catch((err) => console.log(err));
+  }
+}, [email]);
+
+return (
     <div className="checkout-page">
       <div className="checkout-container">
 
         <h1 className="checkout-title">
           Checkout
         </h1>
+
+
 
         <div className="checkout-card">
 
@@ -168,6 +198,35 @@ if (!email) {
 </button>
 
           <div className="checkout-grid">
+            {savedAddresses.length > 0 && (
+  <div className="saved-addresses">
+
+    {savedAddresses.map((addr) => (
+      <button
+        key={addr._id}
+        className="address-chip"
+        onClick={() =>
+          setAddress({
+            ...address,
+            house: addr.house,
+            road: addr.road,
+            city: addr.city,
+            district: addr.district,
+            state: addr.state,
+            pincode: addr.pincode,
+          })
+        }
+      >
+        {addr.type === "Home"
+          ? "🏠 Home"
+          : addr.type === "Office"
+          ? "🏢 Office"
+          : "📍 Other"}
+      </button>
+    ))}
+
+  </div>
+)}
 
         <input
   className="checkout-input"
@@ -277,6 +336,7 @@ if (!email) {
   }
 />
 
+
 {errors.pincode && (
   <p className="error-text">{errors.pincode}</p>
 )}
@@ -310,6 +370,29 @@ if (!email) {
             ))}
 
             <hr />
+                     <select
+  value={addressType}
+  onChange={(e) =>
+    setAddressType(e.target.value)
+  }
+  className="address-select"
+>
+  <option>🏠 Home</option>
+  <option>🏢 Office</option>
+  <option>📍 Other</option>
+</select>
+
+<label className="save-address-box">
+  <input
+    type="checkbox"
+    checked={saveAddress}
+    onChange={(e) =>
+      setSaveAddress(e.target.checked)
+    }
+  />
+
+  Save this address
+</label>
 
             <div className="summary-row summary-total">
               <span>Total</span>
@@ -317,6 +400,7 @@ if (!email) {
             </div>
 
           </div>
+          
 
          <button
   className="order-btn"
