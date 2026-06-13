@@ -36,7 +36,7 @@ const AllProducts = () => {
       <div className="search-container">
         <input
           type="text"
-          placeholder="🍕 Search Pizza | 🍔 Burger | 🥤 Drinks  and others"
+          placeholder="  🔍    🍕 Search Pizza | 🍔 Burger | 🥤 Drinks  and others"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />

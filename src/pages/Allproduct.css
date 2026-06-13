@@ -88,3 +88,15 @@
     transform: translateY(0);
   }
 }
+
+
+
+.search-icon {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff4d6d;
+  font-size: 18px;
+  pointer-events: none;
+}
