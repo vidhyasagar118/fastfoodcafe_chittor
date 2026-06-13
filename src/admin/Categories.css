@@ -1,0 +1,123 @@
+/* Categories.css */
+
+.categories-page {
+  min-height: 100vh;
+  background: #f4f6f9;
+  padding: 40px 20px;
+}
+
+.categories-page h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #222;
+  margin-bottom: 30px;
+}
+
+.category-input-box {
+  max-width: 700px;
+  margin: auto;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.categories-page input {
+  flex: 1;
+  padding: 14px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  font-size: 16px;
+}
+
+.categories-page input:focus {
+  border-color: #ff5722;
+}
+
+.categories-page button {
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.categories-page > button {
+  display: block;
+  margin: 15px auto 30px;
+  padding: 12px 25px;
+  background: #ff5722;
+  color: white;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.categories-page > button:hover {
+  background: #e64a19;
+}
+
+.categories-list {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+  gap: 20px;
+}
+
+.category-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+  transition: .3s;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+.category-card h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.category-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.manage-btn {
+  flex: 1;
+  background: #4caf50;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.manage-btn:hover {
+  background: #388e3c;
+}
+
+.delete-btn {
+  flex: 1;
+  background: #f44336;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.delete-btn:hover {
+  background: #d32f2f;
+}
+
+@media (max-width: 768px) {
+  .categories-page h1 {
+    font-size: 2rem;
+  }
+
+  .category-actions {
+    flex-direction: column;
+  }
+}

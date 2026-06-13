@@ -1,0 +1,122 @@
+/* Admin Orders Page */
+
+.admin-orders-page {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 50px 20px;
+}
+
+.admin-orders-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.admin-orders-title {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #dc2626;
+  margin-bottom: 30px;
+}
+
+/* Table Container */
+
+.orders-table-wrapper {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* Table */
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table thead {
+  background: #dc2626;
+  color: white;
+}
+
+.orders-table th {
+  padding: 18px;
+  text-align: left;
+  font-size: 15px;
+}
+
+.orders-table td {
+  padding: 18px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.orders-table tbody tr:hover {
+  background: #fff5f5;
+}
+
+/* Status Badge */
+
+.status {
+  padding: 8px 14px;
+  border-radius: 30px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pending {
+  background: #f59e0b;
+}
+
+.delivered {
+  background: #16a34a;
+}
+
+.cancelled {
+  background: #dc2626;
+}
+
+/* Action Button */
+
+.action-btn {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.action-btn:hover {
+  background: #1d4ed8;
+}
+
+/* Responsive */
+.delivered{
+  background:#22c55e;
+}
+
+.pending{
+  background:#f59e0b;
+}
+
+.cancelled{
+  background:#ef4444;
+}
+@media (max-width: 768px) {
+
+  .admin-orders-title {
+    font-size: 2rem;
+  }
+
+  .orders-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .orders-table {
+    min-width: 700px;
+  }
+
+}

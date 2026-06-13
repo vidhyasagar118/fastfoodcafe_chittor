@@ -1,0 +1,93 @@
+/* Navbar */
+
+.navbar {
+  background: linear-gradient(90deg, #dc2626, #b91c1c);
+  color: white;
+  padding: 15px 40px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Logo Section */
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-section img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.logo-section h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Menu */
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffe5e5;
+}
+
+/* Icons */
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-icons a {
+  color: white;
+  transition: 0.3s;
+}
+
+.nav-icons a:hover {
+  color: #ffd7d7;
+  transform: scale(1.1);
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .logo-section h1 {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

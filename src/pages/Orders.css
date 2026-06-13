@@ -1,0 +1,207 @@
+.orders-page {
+  min-height: 100vh;
+  background: #f4f6f9;
+  padding: 40px 20px;
+}
+
+.orders-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.orders-title {
+  text-align: center;
+  font-size: 42px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 40px;
+}
+
+.order-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.order-card:hover {
+  transform: translateY(-5px);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-header h2 {
+  margin: 0;
+  color: #222;
+}
+
+.order-date {
+  color: #777;
+  margin-top: 5px;
+}
+
+.status {
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: white;
+  font-weight: 600;
+}
+
+.pending {
+  background: #ff9800;
+}
+
+.preparing {
+  background: #2196f3;
+}
+
+.delivered {
+  background: #28a745;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #eee;
+  border-radius: 20px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 20px;
+  background: #28a745;
+}
+
+.fill-30 {
+  width: 30%;
+}
+
+.fill-70 {
+  width: 70%;
+}
+
+.fill-100 {
+  width: 100%;
+}
+
+.section-title {
+  margin: 25px 0 15px;
+  color: #222;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.food-img {
+  width: 200px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-details h4 {
+  margin: 0;
+  font-size: 20px;
+  color: #222;
+}
+
+.item-details p {
+  margin-top: 8px;
+  color: #666;
+}
+
+.item-price {
+  font-size: 24px;
+  font-weight: 700;
+  color: #e53935;
+}
+
+.address-box {
+  margin-top: 20px;
+  background: #fff8e1;
+  border-left: 5px solid #ff9800;
+  padding: 18px;
+  border-radius: 12px;
+}
+
+.address-box h4 {
+  margin: 0 0 10px;
+}
+
+.address-box p {
+  margin: 0;
+  line-height: 1.8;
+  color: #555;
+}
+
+.order-footer {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-price {
+  background: linear-gradient(
+    135deg,
+    #ff5722,
+    #e53935
+  );
+  color: white;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.order-id {
+  color: #777;
+  font-size: 14px;
+}
+
+.empty-orders {
+  background: white;
+  padding: 60px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+.cancelled{
+  background:#ef4444;
+  color:white;
+}
+
+.fill-cancelled{
+  width:100%;
+  background:#ef4444;
+}
+.cancel-message{
+  margin-top:15px;
+  padding:12px 15px;
+  background:#fee2e2;
+  color:#b91c1c;
+  border-left:4px solid #ef4444;
+  border-radius:10px;
+  font-weight:500;
+  line-height:1.5;
+}

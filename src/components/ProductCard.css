@@ -1,0 +1,129 @@
+/* Product Card */
+
+.product-card {
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Product Image */
+
+.product-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+/* Content */
+
+.product-content {
+  padding: 18px;
+}
+
+.product-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.product-description {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  color: #dc2626;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Quantity */
+
+.qty-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.qty-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 8px;
+  background: #f3f4f6;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.qty-btn:hover {
+  background: #e5e7eb;
+}
+
+.qty-value {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Add To Cart Button */
+
+.cart-btn {
+  width: 100%;
+  border: none;
+  padding: 12px;
+  background: #dc2626;
+  color: white;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cart-btn:hover {
+  background: #b91c1c;
+}
+
+/* Offer Badge */
+
+.offer-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #16a34a;
+  color: white;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+  .product-image {
+    height: 180px;
+  }
+
+  .product-name {
+    font-size: 1.1rem;
+  }
+
+  .product-price {
+    font-size: 1rem;
+  }
+
+}

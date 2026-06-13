@@ -1,0 +1,92 @@
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+import { useEffect, useState } from "react";
+import CategorySection from "../components/CategorySection";
+import "./Home.css";
+import { Navigate } from "react-router-dom";
+
+const Home = () => {
+    const navigate = useNavigate();
+
+ const [categories, setCategories] = useState([]);
+const [products, setProducts] = useState([]);
+
+useEffect(() => {
+  fetchProducts();
+  fetchCategories();
+}, []);
+
+const fetchCategories = async () => {
+  const res = await axios.get(
+    "http://localhost:5000/api/categories"
+  );
+
+  setCategories(res.data);
+};
+const fetchProducts = async () => {
+  try {
+    const res = await axios.get(
+      "http://localhost:5000/api/products"
+    );
+
+    setProducts(res.data);
+
+  } catch (err) {
+    console.log(err);
+  }
+};
+  return (
+    <div>
+
+      <section className="hero-section">
+        <div className="hero-content">
+
+          <h1>Chittorgharh FastFlash</h1>
+
+          <p>
+            Fresh Food Delivered Fast
+          </p>
+
+          <button className="hero-btn"  onClick={()=>{navigate("allproducts")}}>
+            Order Now
+          </button>
+
+        </div>
+      </section>
+
+      <div className="offer-banner">
+        <h2>🔥 Today's Special Offer</h2>
+
+        <p>
+          Get 20% OFF on all Pizza Orders
+        </p>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-5">
+
+    {
+ 
+  categories.map((cat) => (
+    <CategorySection
+      key={cat._id}
+      title={cat.name}
+      items={
+        products
+          .filter(
+            (p) => p.category === cat.name
+          )
+          .slice(0, 4)
+      }
+    />
+  ))
+
+}
+
+      </div>
+
+    </div>
+  );
+};
+
+export default Home;
