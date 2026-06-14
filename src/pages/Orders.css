@@ -205,3 +205,31 @@
   font-weight:500;
   line-height:1.5;
 }
+.reorder-btn{
+  margin-top:15px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(
+    135deg,
+    #ff6b6b,
+    #ff4d4d
+  );
+  color:white;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.reorder-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:
+  0 10px 20px
+  rgba(255,77,77,.3);
+}
+
+.reorder-btn:active{
+  transform:scale(.97);
+}

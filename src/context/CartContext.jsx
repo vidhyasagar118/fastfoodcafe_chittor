@@ -32,6 +32,11 @@ useEffect(() => {
   }
 }, [cart, email]);
 
+
+
+const setWholeCart = (items) => {
+  setCart(items);
+};
   /* Add Item */
 
  const addToCart = (item) => {
@@ -89,14 +94,10 @@ const decrease = (id) => {
   /* Remove Item */
 
   const removeItem = (id) => {
-
-    setCart(
-      cart.filter(
-        (item) => item._id !== id
-      )
-    );
-
-  };
+  setCart((prev) =>
+    prev.filter((item) => item._id !== id)
+  );
+};
 
   /* Clear Cart */
 
@@ -123,16 +124,17 @@ const decrease = (id) => {
 
   return (
     <CartContext.Provider
-      value={{
-        cart,
-        addToCart,
-        increase,
-        decrease,
-        removeItem,
-        clearCart,
-        totalPrice,
-        totalItems,
-      }}
+     value={{
+  cart,
+  addToCart,
+  increase,
+  decrease,
+  removeItem,
+  clearCart,
+  totalPrice,
+  totalItems,
+  setWholeCart,
+}}
     >
       {children}
     </CartContext.Provider>

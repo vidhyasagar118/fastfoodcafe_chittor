@@ -1,63 +1,23 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Cart.css";
+import { useContext } from "react";
 
+import { CartContext } from "../context/CartContext";
 const Cart = () => {
-  const [cart, setCart] =
-   useState([]);
   const navigate = useNavigate();
+  const {
+  cart,
+  increase,
+  decrease,
+  removeItem
+} = useContext(CartContext);
  const email =
     localStorage.getItem("userEmail");
   // Load cart from localStorage
 
-useEffect(() => {
-  const data =
-    JSON.parse(
-      localStorage.getItem(`cart_${email}`)
-    ) || [];
 
-  setCart(data);
-}, [email]);
-  // Increase quantity
-  const increaseQty = (index) => {
-    const updated = [...cart];
-    updated[index].qty += 1;
-
-    setCart(updated);
-    localStorage.setItem(
-  `cart_${email}`,
-  JSON.stringify(updated)
-);
-  };
-
-  // Decrease quantity
-  const decreaseQty = (index) => {
-    const updated = [...cart];
-
-    if (updated[index].qty > 1) {
-      updated[index].qty -= 1;
-    } else {
-      updated.splice(index, 1);
-    }
-
-    setCart(updated);
-    localStorage.setItem(
-  `cart_${email}`,
-  JSON.stringify(updated)
-);
-  };
-
-  // Remove Item
-  const removeItem = (index) => {
-    const updated = [...cart];
-    updated.splice(index, 1);
-
-    setCart(updated);
-    localStorage.setItem(
-  `cart_${email}`,
-  JSON.stringify(updated)
-);
-  };
+  
 
   // Total Price
   const total =
@@ -128,38 +88,28 @@ cart.reduce(
               </div>
 
               <div className="qty-controls">
-
-                <button
-                  className="qty-btn"
-                  onClick={() =>
-                    decreaseQty(index)
-                  }
-                >
-                  -
-                </button>
+<button
+  className="qty-btn"
+  onClick={() => decrease(item._id)}
+>
+  -
+</button>
 
                 <span className="qty-number">
                   {item.qty}
                 </span>
 
-                <button
-                  className="qty-btn"
-                  onClick={() =>
-                    increaseQty(index)
-                  }
-                >
-                  +
-                </button>
-
-                <button
-                  className="remove-btn"
-                  onClick={() =>
-                    removeItem(index)
-                  }
-                >
-                  Remove
-                </button>
-
+<button
+  className="qty-btn"
+  onClick={() => increase(item._id)}
+>
+  +
+</button><button
+  className="remove-btn"
+  onClick={() => removeItem(item._id)}
+>
+  Remove
+</button>
               </div>
 
             </div>
