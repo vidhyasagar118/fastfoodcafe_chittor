@@ -4,7 +4,7 @@ import API from "../api";
 const Orders = () => {
 
 const [orders, setOrders] = useState([]);
-
+const [search, setSearch] = useState("");
 useEffect(() => {
   fetchOrders();
 }, []);
@@ -34,6 +34,20 @@ const cancelOrder = async (id) => {
 
   fetchOrders();
 };
+
+const filteredOrders = orders.filter((order) =>
+  order.customerName
+    ?.toLowerCase()
+    .includes(search.toLowerCase()) ||
+
+  order.email
+    ?.toLowerCase()
+    .includes(search.toLowerCase()) ||
+
+  order._id
+    ?.toLowerCase()
+    .includes(search.toLowerCase())
+);
   return (
     <div className="admin-orders-page">
 
@@ -43,6 +57,14 @@ const cancelOrder = async (id) => {
           📦 Manage Orders
         </h1>
 
+<div className="search-box">
+  <input
+    type="text"
+    placeholder="🔍 Search Customer, Email, Order ID..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
+</div>
         <div className="orders-table-wrapper">
 
           <table className="orders-table">
@@ -65,8 +87,7 @@ const cancelOrder = async (id) => {
 
             <tbody>
 
-              {orders.map((order, index) => (
-              
+{filteredOrders.map((order, index) => (
                 <tr key={index}>
 <td>{order.customerName}</td>
 <td>

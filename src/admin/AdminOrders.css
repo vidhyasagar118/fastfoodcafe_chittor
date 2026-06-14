@@ -120,3 +120,30 @@
   }
 
 }
+.search-box{
+  margin-bottom:20px;
+  display:flex;
+  justify-content:flex-end;
+}
+
+.search-box input{
+  width:350px;
+  padding:12px 18px;
+  border:none;
+  outline:none;
+  border-radius:12px;
+  background:#1f2937;
+  color:white;
+  font-size:15px;
+  box-shadow:0 0 15px rgba(255,140,0,0.15);
+  transition:0.3s;
+}
+
+.search-box input:focus{
+  box-shadow:0 0 20px rgba(255,140,0,0.5);
+  transform:scale(1.02);
+}
+
+.search-box input::placeholder{
+  color:#bdbdbd;
+}
