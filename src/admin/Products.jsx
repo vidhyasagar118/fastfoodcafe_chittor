@@ -11,13 +11,16 @@ const Products = () => {
   const [editing, setEditing] = useState(null);
 
   const [form, setForm] = useState({
-    name: "",
-    description: "",
-    image: "",
-    price: "",
-    category: "",
-  });
-
+  name: "",
+  description: "",
+  image: "",
+  price: "",
+  category: "",
+  stock: 10,
+  discount: 0,
+  discountStart: "",
+  discountEnd: "",
+});
   useEffect(() => {
     setForm((prev) => ({
       ...prev,
@@ -48,13 +51,17 @@ const res = await API.get(
     
       alert("Product Added");
 
-      setForm({
-        name: "",
-        description: "",
-        image: "",
-        price: "",
-        category,
-      });
+setForm({
+  name: "",
+  description: "",
+  image: "",
+  price: "",
+  category,
+  stock: 10,
+  discount: 0,
+  discountStart: "",
+  discountEnd: "",
+});
 
       setShowForm(false);
 
@@ -77,13 +84,17 @@ await API.put(
 
       setShowForm(false);
 
-      setForm({
-        name: "",
-        description: "",
-        image: "",
-        price: "",
-        category,
-      });
+     setForm({
+  name: "",
+  description: "",
+  image: "",
+  price: "",
+  category,
+  stock: 10,
+  discount: 0,
+  discountStart: "",
+  discountEnd: "",
+});
 
       fetchProducts();
     } catch (err) {
@@ -124,18 +135,22 @@ await API.put(
   };
 
   const startEdit = (item) => {
-    setEditing(item._id);
+  setEditing(item._id);
 
-    setForm({
-      name: item.name,
-      description: item.description,
-      image: item.image,
-      price: item.price,
-      category: item.category,
-    });
+  setForm({
+    name: item.name,
+    description: item.description,
+    image: item.image,
+    price: item.price,
+    category: item.category,
+    stock: item.stock || 0,
+    discount: item.discount || 0,
+    discountStart: item.discountStart || "",
+    discountEnd: item.discountEnd || "",
+  });
 
-    setShowForm(true);
-  };
+  setShowForm(true);
+};
 
   return (
     <div className="products-page">
@@ -148,13 +163,17 @@ await API.put(
         onClick={() => {
           setEditing(null);
 
-          setForm({
-            name: "",
-            description: "",
-            image: "",
-            price: "",
-            category,
-          });
+setForm({
+  name: "",
+  description: "",
+  image: "",
+  price: "",
+  category,
+  stock: 10,
+  discount: 0,
+  discountStart: "",
+  discountEnd: "",
+});
 
           setShowForm(!showForm);
         }}
@@ -211,6 +230,51 @@ await API.put(
             }
           />
 
+<input
+  type="number"
+  placeholder="Stock"
+  value={form.stock}
+  onChange={(e) =>
+    setForm({
+      ...form,
+      stock: e.target.value,
+    })
+  }
+/>
+
+<input
+  type="number"
+  placeholder="Discount %"
+  value={form.discount}
+  onChange={(e) =>
+    setForm({
+      ...form,
+      discount: e.target.value,
+    })
+  }
+/>
+
+<input
+  type="datetime-local"
+  value={form.discountStart}
+  onChange={(e) =>
+    setForm({
+      ...form,
+      discountStart: e.target.value,
+    })
+  }
+/>
+
+<input
+  type="datetime-local"
+  value={form.discountEnd}
+  onChange={(e) =>
+    setForm({
+      ...form,
+      discountEnd: e.target.value,
+    })
+  }
+/>
           <button
             onClick={
               editing

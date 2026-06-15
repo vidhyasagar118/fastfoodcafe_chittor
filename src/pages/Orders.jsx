@@ -103,7 +103,21 @@ const Orders = () => {
                       Quantity : {item.qty}
                     </p>
                   </div>
+    {order.status === "Delivered" && (
+  <button
+    className="review-btn"
+    onClick={() => {
+      localStorage.setItem(
+        "canReview",
+        item._id
+      );
 
+      navigate(`/product/${item._id}`);
+    }}
+  >
+    ⭐ Write Review
+  </button>
+)}
                   <div className="item-price">
                     ₹
                     {(item.price || 0) *

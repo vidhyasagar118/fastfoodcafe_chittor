@@ -10,12 +10,7 @@ const navigate = useNavigate();
   const [qty, setQty] = useState(1);
 const { addToCart } = useContext(CartContext);
   return (
-<div
-  className="product-card"
-  onClick={() =>
-    navigate(`/product/${item._id}`)
-  }
->
+<div className="product-card">
       <span className="offer-badge">
         Bestseller
       </span>
@@ -65,7 +60,17 @@ item.discount > 0 ? (
 ) : (
   <p>₹{item.price}</p>
 )
+
 }
+{item.stock > 0 ? (
+  <p style={{ color: "green" }}>
+    ✅ In Stock ({item.stock})
+  </p>
+) : (
+  <p style={{ color: "red" }}>
+    ❌ Out Of Stock
+  </p>
+)}
         <div className="qty-container">
 
           <button
@@ -93,17 +98,22 @@ item.discount > 0 ? (
 
         </div>
 
-       <button
+     <button
   className="cart-btn"
-  onClick={() => {
-    for(let i=0;i<qty;i++){
+  disabled={item.stock <= 0}
+  onClick={(e) => {
+    e.stopPropagation();
+
+    for (let i = 0; i < qty; i++) {
       addToCart(item);
     }
 
     alert(`${item.name} Added To Cart`);
   }}
 >
-  Add To Cart
+  {item.stock > 0
+    ? "Add To Cart"
+    : "Out Of Stock"}
 </button>
       </div>
 
