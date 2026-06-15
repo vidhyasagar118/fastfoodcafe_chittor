@@ -18,6 +18,7 @@ import Categories from "./admin/Categories";
 import AdminOrders from "./admin/Orders";
 import AdminLogin from "./pages/AdminLogin";
 import ProtectedAdmin from "./components/ProtectedAdmin";
+import Usersinfo from "./admin/Usersinfo";
 function App() {
   return (
     <>
@@ -34,6 +35,8 @@ function App() {
         <Route path="/admin/products" element={<Products />} />
         <Route path="/admin/categories" element={<Categories />} />
         <Route path="/admin/orders" element={<AdminOrders />} />
+                <Route path="/admin/users" element={<Usersinfo />} />
+
         <Route
   path="/adminlogin"
   element={<AdminLogin />}
