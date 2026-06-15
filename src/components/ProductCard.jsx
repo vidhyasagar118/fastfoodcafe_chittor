@@ -2,13 +2,20 @@ import { useState } from "react";
 import "./ProductCard.css";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
+
 const ProductCard = ({ item }) => {
+const navigate = useNavigate();
 
   const [qty, setQty] = useState(1);
 const { addToCart } = useContext(CartContext);
   return (
-    <div className="product-card">
-
+<div
+  className="product-card"
+  onClick={() =>
+    navigate(`/product/${item._id}`)
+  }
+>
       <span className="offer-badge">
         Bestseller
       </span>

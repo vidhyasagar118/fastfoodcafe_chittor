@@ -3,7 +3,9 @@ import API from "../api";
 import { useEffect, useState } from "react";
 import CategorySection from "../components/CategorySection";
 import "./Home.css";
-
+import TrendingProducts from "../components/TrendingProducts";
+import BestSellerProducts from "../components/BestSellerProducts";
+import TopRatedProducts from "../components/TopRatedProducts";
 const Home = () => {
     const navigate = useNavigate();
 
@@ -57,6 +59,12 @@ const res = await API.get("/products");
           Get 20% OFF on all Pizza Orders
         </p>
       </div>
+
+<TrendingProducts />
+
+<BestSellerProducts />
+
+<TopRatedProducts />
 
       <div className="max-w-7xl mx-auto px-5">
 

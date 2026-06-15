@@ -9,5 +9,5 @@ export default function ProtectedAdmin({
 
   return isAdmin === "true"
     ? children
-    : <Navigate to="/admin-login" />;
+    : <Navigate to="/adminlogin" />;
 }
