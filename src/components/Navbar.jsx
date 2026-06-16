@@ -1,49 +1,99 @@
-import { Link } from "react-router-dom";
-import { FaShoppingCart, FaUser } from "react-icons/fa";
-import "./Navbar.css";
-import { useNavigate } from "react-router-dom";
-import { FaUserShield } from "react-icons/fa";
-import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  FaShoppingCart,
+  FaUser,
+  FaUserShield,
+  FaBars,
+  FaTimes,
+  FaSearch,
+} from "react-icons/fa";
+import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
+import "./Navbar.css";
+
 const Navbar = () => {
-  const navigate=useNavigate();
-  const { totalItems } =
-useContext(CartContext);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const { totalItems } = useContext(CartContext);
+
   return (
     <nav className="navbar">
+
+      <div
+        className="menu-icon"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        {menuOpen ? <FaTimes /> : <FaBars />}
+      </div>
 
       <div className="logo-section">
         <img
           src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png"
           alt="logo"
         />
-
         <h1>Chittorgharh FastFlash</h1>
       </div>
 
-      <div className="nav-links">
-        
-        <Link to="/">Home</Link>
-        <Link to="/contact">Contact</Link>
-        <Link to="/orders">Orders</Link>
-        
-<Link to="/adminlogin">
-  <FaUserShield size={24} />
-</Link>
-      </div>
-                <button className="hero-btn"  onClick={()=>{navigate("allproducts")}}> search now </button>
-
-
       <div className="nav-icons">
+
+        <div
+          className="mobile-search"
+          onClick={() => navigate("/allproducts")}
+        >
+          <FaSearch />
+        </div>
+
         <Link to="/login">
-          <FaUser size={22} />
+          <FaUser size={20} />
         </Link>
 
-      <Link to="/cart">
-  <FaShoppingCart size={24} />
-  <span>{totalItems}</span>
-</Link>
+        <Link to="/cart" className="cart-link">
+          <FaShoppingCart size={22} />
+          <span>{totalItems}</span>
+        </Link>
+
       </div>
+
+      <div className={`nav-links ${menuOpen ? "active" : ""}`}>
+        <Link to="/" onClick={() => setMenuOpen(false)}>
+          Home
+        </Link>
+
+        <Link
+          to="/allproducts"
+          onClick={() => setMenuOpen(false)}
+        >
+          Products
+        </Link>
+
+        <Link
+          to="/contact"
+          onClick={() => setMenuOpen(false)}
+        >
+          Contact
+        </Link>
+
+        <Link
+          to="/orders"
+          onClick={() => setMenuOpen(false)}
+        >
+          Orders
+        </Link>
+
+        <Link
+          to="/adminlogin"
+          onClick={() => setMenuOpen(false)}
+        >
+          <FaUserShield />
+        </Link>
+      </div>
+
+      <button
+        className="desktop-search-btn"
+        onClick={() => navigate("/allproducts")}
+      >
+        Search Now
+      </button>
 
     </nav>
   );

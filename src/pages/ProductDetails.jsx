@@ -1,26 +1,52 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import API from "../api";
-
+import "./ProductDetails.css";
+import ProductCard from "../components/ProductCard";
+import { useNavigate } from "react-router-dom";
 const ProductDetails = () => {
   const { id } = useParams();
 
   const [product, setProduct] = useState(null);
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
+  const [relatedProducts, setRelatedProducts] = useState([]);
+const navigate = useNavigate();
 
   useEffect(() => {
     fetchProduct();
   }, [id]);
 
   const fetchProduct = async () => {
-    try {
-      const res = await API.get(`/products/${id}`);
-      setProduct(res.data);
-    } catch (err) {
-      console.log(err);
+  try {
+    const res = await API.get(`/products/${id}`);
+    setProduct(res.data);
+
+    const all = await API.get("/products");
+
+    let related = all.data
+      .filter(
+        (item) =>
+          item.category === res.data.category &&
+          item._id !== res.data._id
+      );
+
+    if (related.length < 6) {
+      const extra = all.data.filter(
+        (item) => item._id !== res.data._id
+      );
+
+      related = [
+        ...related,
+        ...extra.sort(() => 0.5 - Math.random()),
+      ];
     }
-  };
+
+    setRelatedProducts(related.slice(0, 6));
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   const submitReview = async () => {
     const email = localStorage.getItem("userEmail");
@@ -56,12 +82,22 @@ const ProductDetails = () => {
     return <h2>Loading...</h2>;
   }
 
+  const email = localStorage.getItem("userEmail");
+
+  // User ne pehle review diya hai ya nahi
+  const alreadyReviewed =
+    email &&
+    product?.reviews?.some(
+      (review) => review.email === email
+    );
+
+  // Order delivered hone ke baad set hota hai
+  const canReview =
+    localStorage.getItem("canReview");
+
   const finalPrice =
     product.price -
     (product.price * (product.discount || 0)) / 100;
-
-  const canReview =
-    localStorage.getItem("canReview");
 
   return (
     <div className="product-details-page">
@@ -112,7 +148,7 @@ const ProductDetails = () => {
 
       {/* Review Form */}
 
-      {canReview === id && (
+      {canReview === id && !alreadyReviewed && (
         <div className="review-form">
           <h2>Write Review</h2>
 
@@ -140,6 +176,16 @@ const ProductDetails = () => {
           <button onClick={submitReview}>
             Submit Review
           </button>
+        </div>
+      )}
+
+      {/* Already Reviewed Message */}
+
+      {canReview === id && alreadyReviewed && (
+        <div className="review-form">
+          <h3 style={{ color: "green" }}>
+            ✅ You have already reviewed this product
+          </h3>
         </div>
       )}
 
@@ -175,6 +221,27 @@ const ProductDetails = () => {
           ))
         )}
       </div>
+      <div className="related-section">
+  <h2>🔥 You May Also Like</h2>
+
+  <div className="related-grid">
+    {relatedProducts.map((item) => (
+      <ProductCard
+        key={item._id}
+        item={item}
+      />
+    ))}
+  </div>
+
+  <div className="view-more-wrap">
+    <button
+      className="view-more-btn"
+      onClick={() => navigate("/allproducts")}
+    >
+      View More Products →
+    </button>
+  </div>
+</div>
     </div>
   );
 };

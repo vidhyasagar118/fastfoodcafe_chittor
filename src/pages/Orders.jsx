@@ -112,10 +112,12 @@ const Orders = () => {
         item._id
       );
 
-      navigate(`/product/${item._id}`);
+      navigate(
+        `/productdetails/${item._id}`
+      );
     }}
   >
-    ⭐ Write Review
+    Review Product
   </button>
 )}
                   <div className="item-price">

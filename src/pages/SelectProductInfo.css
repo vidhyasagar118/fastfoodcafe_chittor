@@ -1,0 +1,215 @@
+/* Page */
+
+.product-info-page{
+  max-width:1200px;
+  margin:20px auto;
+  padding:15px;
+  animation:fadeIn .5s ease;
+}
+
+/* Product Section */
+
+.product-info-container{
+  display:flex;
+  gap:35px;
+  background:#fff;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+  animation:slideUp .5s ease;
+}
+
+.product-info-image{
+  width:450px;
+  height:450px;
+  object-fit:cover;
+  border-radius:18px;
+  transition:.4s;
+}
+
+.product-info-image:hover{
+  transform:scale(1.03);
+}
+
+.product-info-content{
+  flex:1;
+}
+
+.product-info-content h1{
+  font-size:2.2rem;
+  margin-bottom:10px;
+  color:#111827;
+}
+
+.product-info-content p{
+  color:#555;
+  line-height:1.7;
+  margin:10px 0;
+}
+
+.product-info-content h2{
+  color:#dc2626;
+  font-size:2rem;
+  margin:15px 0;
+}
+
+/* Reviews */
+
+.reviews-section{
+  margin-top:30px;
+}
+
+.reviews-section h2{
+  margin-bottom:15px;
+  color:#111827;
+}
+
+.review-card{
+  background:#fff;
+  padding:18px;
+  margin-bottom:12px;
+  border-radius:14px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  transition:.3s;
+}
+
+.review-card:hover{
+  transform:translateY(-3px);
+}
+
+.review-card h4{
+  margin:0 0 5px;
+}
+
+.review-card small{
+  color:#777;
+}
+
+/* Tablet */
+
+@media(max-width:992px){
+
+  .product-info-container{
+    gap:20px;
+  }
+
+  .product-info-image{
+    width:350px;
+    height:350px;
+  }
+
+  .product-info-content h1{
+    font-size:1.8rem;
+  }
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+  .product-info-page{
+    padding:10px;
+  }
+
+  .product-info-container{
+    flex-direction:column;
+    padding:15px;
+    gap:15px;
+  }
+
+  .product-info-image{
+    width:100%;
+    height:260px;
+    border-radius:14px;
+  }
+
+  .product-info-content h1{
+    font-size:1.4rem;
+    margin-bottom:8px;
+  }
+
+  .product-info-content h2{
+    font-size:1.5rem;
+  }
+
+  .product-info-content p{
+    font-size:14px;
+    line-height:1.5;
+  }
+
+  .reviews-section h2{
+    font-size:1.2rem;
+  }
+
+  .review-card{
+    padding:12px;
+  }
+
+}
+
+/* Small Phones */
+
+@media(max-width:480px){
+
+  .product-info-image{
+    height:220px;
+  }
+
+  .product-info-content h1{
+    font-size:1.2rem;
+  }
+
+  .product-info-content h2{
+    font-size:1.3rem;
+  }
+
+  .product-info-content p{
+    font-size:13px;
+  }
+
+}
+.related-products{
+  margin-top:40px;
+}
+
+.related-products h2{
+  margin-bottom:15px;
+}
+
+.related-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+@media(max-width:768px){
+
+  .related-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+  }
+
+}
+
+/* Animations */
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+  }
+  to{
+    opacity:1;
+  }
+}
+
+@keyframes slideUp{
+  from{
+    opacity:0;
+    transform:translateY(25px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}

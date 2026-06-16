@@ -34,7 +34,7 @@ const res = await API.get("/products");
   return (
     <div>
 
-      <section className="hero-section">
+<section className="hero-section ">
         <div className="hero-content">
 
           <h1>Chittorgharh FastFlash</h1>
@@ -86,6 +86,14 @@ const res = await API.get("/products");
 
 }
 
+ <div className="view-more-wrap">
+    <button
+      className="view-more-btn"
+      onClick={() => navigate("/allproducts")}
+    >
+      View More Products →
+    </button>
+  </div>
       </div>
 
     </div>

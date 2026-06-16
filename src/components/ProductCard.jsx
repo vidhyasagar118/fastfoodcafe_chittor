@@ -3,15 +3,25 @@ import "./ProductCard.css";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
-
+import API from "../api";
 const ProductCard = ({ item }) => {
 const navigate = useNavigate();
 
   const [qty, setQty] = useState(1);
 const { addToCart } = useContext(CartContext);
   return (
-<div className="product-card">
-      <span className="offer-badge">
+<div
+  className="product-card"
+  onClick={async () => {
+    try {
+      await API.put(`/products/view/${item._id}`);
+    } catch (err) {
+      console.log(err);
+    }
+
+    navigate(`/product/${item._id}`);
+  }}
+>     <span className="offer-badge">
         Bestseller
       </span>
 
@@ -102,14 +112,14 @@ item.discount > 0 ? (
   className="cart-btn"
   disabled={item.stock <= 0}
   onClick={(e) => {
-    e.stopPropagation();
+  e.stopPropagation();
 
-    for (let i = 0; i < qty; i++) {
-      addToCart(item);
-    }
+  for (let i = 0; i < qty; i++) {
+    addToCart(item);
+  }
 
-    alert(`${item.name} Added To Cart`);
-  }}
+  alert(`${item.name} Added To Cart`);
+}}
 >
   {item.stock > 0
     ? "Add To Cart"

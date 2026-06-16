@@ -1,0 +1,31 @@
+.products-section{
+  padding:10px;
+}
+
+.products-section h2{
+  font-size:18px;
+  margin:15px 0;
+}
+
+.products-grid{
+  display:grid !important;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.viewbtn{
+    border:none;
+  background:#dc2626;
+  color:white;
+  padding:8px 14px;
+  border-radius:8px;
+  cursor:pointer;
+}
+@media(max-width:768px){
+
+  .products-grid{
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:8px;
+  }
+
+}

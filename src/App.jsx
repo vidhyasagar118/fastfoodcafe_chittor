@@ -19,6 +19,8 @@ import AdminOrders from "./admin/Orders";
 import AdminLogin from "./pages/AdminLogin";
 import ProtectedAdmin from "./components/ProtectedAdmin";
 import Usersinfo from "./admin/Usersinfo";
+import SelectProductInfo from "./pages/SelectProductInfo";
+import FeaturedProducts from "./pages/FeaturedProducts";
 function App() {
   return (
     <>
@@ -36,9 +38,9 @@ function App() {
         <Route path="/admin/categories" element={<Categories />} />
         <Route path="/admin/orders" element={<AdminOrders />} />
                 <Route path="/admin/users" element={<Usersinfo />} />
-       <Route
- path="/product/:id"
- element={<ProductDetails />}
+     <Route
+  path="/featured"
+  element={<FeaturedProducts />}
 />
         <Route
   path="/adminlogin"
@@ -88,6 +90,16 @@ function App() {
       <Orders />
     </ProtectedAdmin>
   }
+/>
+
+<Route
+ path="/product/:id"
+ element={<SelectProductInfo />}
+/>
+
+<Route
+ path="/productdetails/:id"
+ element={<ProductDetails />}
 />
 
 <Route
