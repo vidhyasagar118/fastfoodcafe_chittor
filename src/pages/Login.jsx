@@ -3,16 +3,20 @@ import { jwtDecode } from "jwt-decode";
 import "./Login.css";
 import API from "../api";
 import { useNavigate } from "react-router-dom";
+
 const Login = () => {
-    const navigate=useNavigate();
+  const navigate = useNavigate();
+
   const userName =
     localStorage.getItem("userName");
 
   const userEmail =
     localStorage.getItem("userEmail");
 
-  const logout = () => {
+  const userPhoto =
+    localStorage.getItem("userPhoto");
 
+  const logout = () => {
     localStorage.removeItem("userName");
     localStorage.removeItem("userEmail");
     localStorage.removeItem("userPhoto");
@@ -22,104 +26,109 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <div className="login-card">
+      {!userName ? (
+        <div className="login-card">
 
-        {!userName ? (
+          <h1 className="login-title">
+            Welcome Back 👋
+          </h1>
 
-          <>
-            <h1 className="login-title">
-              Login
-            </h1>
+          <p className="login-subtitle">
+            Login to continue ordering food
+          </p>
 
-<GoogleLogin
-  onSuccess={async (credentialResponse) => {
+          <GoogleLogin
+            onSuccess={async (credentialResponse) => {
+              const user = jwtDecode(
+                credentialResponse.credential
+              );
 
-    const user = jwtDecode(
-      credentialResponse.credential
-    );
+              try {
+                await API.post(
+                  "/auth/google-login",
+                  {
+                    name: user.name,
+                    email: user.email,
+                    picture: user.picture,
+                  }
+                );
 
-    try {
+                localStorage.setItem(
+                  "userName",
+                  user.name
+                );
 
-     await API.post(
-  "/auth/google-login",
-  {
-    name: user.name,
-    email: user.email,
-    picture: user.picture,
-  }
-);
+                localStorage.setItem(
+                  "userEmail",
+                  user.email
+                );
 
-      localStorage.setItem(
-        "userName",
-        user.name
-      );
+                localStorage.setItem(
+                  "userPhoto",
+                  user.picture
+                );
 
-      localStorage.setItem(
-        "userEmail",
-        user.email
-      );
+                window.location.reload();
+              } catch (err) {
+                console.log(err);
+                alert("Login Failed");
+              }
+            }}
+          />
 
-      localStorage.setItem(
-        "userPhoto",
-        user.picture
-      );
+        </div>
+      ) : (
+        <div className="profile-card">
 
-      window.location.reload();
+          <div className="profile-header">
 
-    } catch (err) {
-      console.log(err);
-      alert("Database Save Failed");
-    }
+            <img
+              src={userPhoto}
+              alt="profile"
+              className="profile-img"
+            />
 
-  }}
-  onError={() => {
-    alert("Login Failed");
-  }}
-/>
-          </>
+            <div className="status-badge">
+              🟢 Active
+            </div>
 
-        ) : (
+          </div>
 
-       <>
-  <div className="profile-card">
+          <h2>{userName}</h2>
 
-    <img
-      src={localStorage.getItem("userPhoto")}
-      alt="Profile"
-      className="profile-img"
-    />
+          <p className="email-text">
+            {userEmail}
+          </p>
 
-    <h2>{userName}</h2>
+          <div className="profile-buttons">
 
-    <p>{userEmail}</p>
+            <button
+              onClick={() =>
+                navigate("/orders")
+              }
+            >
+              📦 My Orders
+            </button>
 
-    <div className="action-row">
-      <button
-        onClick={() => navigate("/orders")}
-      >
-        📦 Orders
-      </button>
+            <button
+              onClick={() =>
+                navigate("/cart")
+              }
+            >
+              🛒 My Cart
+            </button>
 
-      <button
-        onClick={() => navigate("/cart")}
-      >
-        🛒 Cart
-      </button>
-    </div>
+          </div>
 
-    <button
-      onClick={logout}
-      className="logout-btn"
-    >
-      🚪 Logout
-    </button>
+          <button
+            className="logout-btn"
+            onClick={logout}
+          >
+            Logout
+          </button>
 
-  </div>
-</>
-
-        )}
-
-      </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -379,6 +379,8 @@ return (
 >
   <option>🏠 Home</option>
   <option>🏢 Office</option>
+    <option>📍 friends/relative</option>
+
   <option>📍 Other</option>
 </select>
 

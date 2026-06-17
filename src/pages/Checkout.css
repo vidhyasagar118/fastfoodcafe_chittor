@@ -230,21 +230,137 @@
 /* =========================
    MOBILE
 ========================= */
+/* =========================
+   MOBILE
+========================= */
 
-@media (max-width: 768px) {
-  .checkout-grid {
-    grid-template-columns: 1fr;
+@media (max-width:768px){
+
+  .checkout-page{
+    padding:10px;
+    align-items:flex-start;
   }
 
-  .checkout-card {
-    padding: 15px;
+  .checkout-container{
+    max-width:100%;
   }
 
-  .checkout-title {
-    font-size: 28px;
+  .checkout-title{
+    font-size:22px;
+    margin-bottom:10px;
   }
 
-  .summary-title {
-    font-size: 20px;
+  .checkout-card{
+    padding:12px;
+    border-radius:16px;
   }
+
+  .location-btn{
+    padding:10px;
+    font-size:13px;
+    border-radius:10px;
+  }
+
+  .checkout-grid{
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+
+  .checkout-input{
+    padding:10px 12px;
+    font-size:13px;
+    border-radius:10px;
+  }
+
+  .error-text{
+    font-size:11px;
+    margin-top:-4px;
+  }
+
+  .saved-addresses{
+    gap:6px;
+  }
+
+  .address-chip{
+    padding:8px 12px;
+    font-size:12px;
+  }
+
+  .summary-box{
+    margin-top:15px;
+    padding:12px;
+    border-radius:12px;
+  }
+
+  .summary-title{
+    font-size:18px;
+    margin-bottom:8px;
+  }
+
+  .summary-row{
+    font-size:13px;
+    padding:6px 0;
+  }
+
+  .summary-total{
+    font-size:18px;
+  }
+
+  .address-select{
+    padding:10px;
+    font-size:13px;
+    border-radius:10px;
+  }
+
+  .save-address-box{
+    padding:10px;
+    font-size:13px;
+    border-radius:10px;
+  }
+
+  .order-btn{
+    padding:12px;
+    font-size:15px;
+    border-radius:12px;
+  }
+}
+
+/* Extra Small Phones */
+
+@media (max-width:480px){
+
+  .checkout-page{
+    padding:6px;
+  }
+
+  .checkout-title{
+    font-size:20px;
+  }
+
+  .checkout-card{
+    padding:10px;
+  }
+
+  .checkout-input{
+    padding:9px 10px;
+    font-size:12px;
+  }
+
+  .summary-title{
+    font-size:16px;
+  }
+
+  .summary-row{
+    font-size:12px;
+  }
+
+  .summary-total{
+    font-size:16px;
+  }
+
+  .order-btn{
+    font-size:14px;
+    padding:10px;
+  }
+
 }

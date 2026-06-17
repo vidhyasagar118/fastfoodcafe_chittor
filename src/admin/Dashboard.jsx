@@ -39,7 +39,7 @@ const Dashboard = () => {
 
           <div className="stat-card">
             <h3>Revenue</h3>
-            <h2>₹{stats.revenue}</h2>
+            <h2>₹{Math.floor(stats.revenue)}</h2>
           </div>
 
           <div className="stat-card">
@@ -55,7 +55,7 @@ const Dashboard = () => {
             to="/admin/categories"
             className="dashboard-card categories-card"
           >
-            <h2>📂 Categories</h2>
+            <h2>📂 Manage Categories</h2>
             <p>Manage Food Categories</p>
           </Link>
 
@@ -63,7 +63,7 @@ const Dashboard = () => {
             to="/admin/orders"
             className="dashboard-card orders-card"
           >
-            <h2>📦 Orders</h2>
+<h2>🚚 Manage Orders</h2>
             <p>View & Manage Customer Orders</p>
           </Link>
 
@@ -71,7 +71,8 @@ const Dashboard = () => {
             to="/admin/users"
             className="dashboard-card users-card"
           >
-            <h2>👥 Users</h2>
+            <h2>👥 Manage Users</h2>
+
             <p>Manage Registered Users</p>
           </Link>
 

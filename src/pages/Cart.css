@@ -109,3 +109,136 @@
   text-align: center;
   padding: 50px;
 }
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .cart-container{
+    padding:10px;
+    margin:15px auto;
+  }
+
+  .cart-title{
+    font-size:24px;
+    margin-bottom:20px;
+  }
+
+  .cart-item{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+
+    padding:12px;
+    border-radius:12px;
+  }
+
+  .item-info{
+    width:100%;
+    gap:12px;
+    align-items:flex-start;
+  }
+
+  .cart-image{
+    width:90px;
+    height:90px;
+    border-radius:10px;
+  }
+
+  .item-info h2{
+    font-size:16px;
+    margin:0 0 5px;
+  }
+
+  .item-price{
+    font-size:13px;
+    margin:2px 0;
+  }
+
+  .item-total{
+    font-size:14px;
+  }
+
+  .qty-controls{
+    width:100%;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  .qty-btn{
+    width:35px;
+    height:35px;
+    font-size:16px;
+  }
+
+  .qty-number{
+    font-size:16px;
+  }
+
+  .remove-btn{
+    padding:8px 12px;
+    font-size:12px;
+  }
+
+  .total-box{
+    text-align:center;
+    margin-top:20px;
+  }
+
+  .total-price{
+    font-size:22px;
+  }
+
+  .delivery-text{
+    font-size:13px;
+  }
+
+  .checkout-btn{
+    padding:12px;
+    font-size:16px;
+    border-radius:8px;
+  }
+
+  .empty-cart{
+    padding:30px 15px;
+  }
+
+  .empty-cart h2{
+    font-size:22px;
+  }
+
+  .empty-cart p{
+    font-size:14px;
+  }
+}
+
+/* Extra Small Phones */
+
+@media(max-width:480px){
+
+  .cart-image{
+    width:80px;
+    height:80px;
+  }
+
+  .item-info h2{
+    font-size:14px;
+  }
+
+  .item-price,
+  .item-total{
+    font-size:12px;
+  }
+
+  .qty-btn{
+    width:32px;
+    height:32px;
+  }
+
+  .checkout-btn{
+    font-size:14px;
+  }
+
+}

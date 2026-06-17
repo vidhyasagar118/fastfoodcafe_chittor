@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api";
+import  "./adminlogin.css"
 export default function AdminLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -35,33 +36,36 @@ export default function AdminLogin() {
   };
 
   return (
-    <div style={{ padding: "100px" }}>
-      <h1>Admin Login</h1>
+   <div className="admin-login-page">
+  <div className="admin-login-card">
+    <h1>Admin Login</h1>
 
-      <input
-        placeholder="Username"
-        value={username}
-        onChange={(e) =>
-          setUsername(e.target.value)
-        }
-      />
+    <input
+      className="admin-input"
+      placeholder="Username"
+      value={username}
+      onChange={(e) => setUsername(e.target.value)}
+    />
 
-      <br /><br />
+    <br /><br />
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) =>
-          setPassword(e.target.value)
-        }
-      />
+    <input
+      className="admin-input"
+      type="password"
+      placeholder="Password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+    />
 
-      <br /><br />
+    <br /><br />
 
-      <button onClick={handleLogin}>
-        Login
-      </button>
-    </div>
+    <button
+      className="admin-btn"
+      onClick={handleLogin}
+    >
+      Login
+    </button>
+  </div>
+</div>
   );
 }

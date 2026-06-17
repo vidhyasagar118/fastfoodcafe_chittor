@@ -70,20 +70,17 @@ const res = await API.get("/products");
 
     {
  
-  categories.map((cat) => (
-    <CategorySection
-      key={cat._id}
-      title={cat.name}
-      items={
-        products
-          .filter(
-            (p) => p.category === cat.name
-          )
-          .slice(0, 4)
-      }
-    />
-  ))
-
+  categories.map((cat, index) => (
+  <CategorySection
+    key={cat._id || cat.name || index}
+    title={cat.name}
+    items={
+      products
+        .filter((p) => p.category === cat.name)
+        .slice(0, 4)
+    }
+  />
+))
 }
 
  <div className="view-more-wrap">
