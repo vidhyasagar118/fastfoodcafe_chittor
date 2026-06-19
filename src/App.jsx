@@ -1,11 +1,11 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./index.css";
 import "./App.css";
-
+import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProtectedAdmin from "./components/ProtectedAdmin";
-
+import AccessDenied from "./pages/AccessDenied";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
@@ -25,6 +25,31 @@ import AdminOrders from "./admin/Orders";
 import Usersinfo from "./admin/Usersinfo";
 
 function App() {
+  const navigate = useNavigate();
+   useEffect(() => {
+   const disableRightClick = (e) => {
+  e.preventDefault();
+  navigate("/access-denied");
+};
+
+const disableInspect = (e) => {
+  if (
+    e.key === "F12" ||
+    (e.ctrlKey && e.shiftKey && e.key === "I") ||
+    (e.ctrlKey && e.shiftKey && e.key === "J") ||
+    (e.ctrlKey && e.key === "U")
+  ) {
+    e.preventDefault();
+    navigate("/access-denied");
+  }
+};
+    document.addEventListener("contextmenu", disableRightClick);
+    document.addEventListener("keydown", disableInspect);
+        return () => {
+      document.removeEventListener("contextmenu", disableRightClick);
+      document.removeEventListener("keydown", disableInspect);
+    };
+  }, []);
   return (
     <>
       <Navbar />
@@ -50,6 +75,10 @@ function App() {
           element={<AllProducts />}
         />
 
+<Route
+  path="/access-denied"
+  element={<AccessDenied />}
+/>
         <Route
           path="/featured"
           element={<FeaturedProducts />}
