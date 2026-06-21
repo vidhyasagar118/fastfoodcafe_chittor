@@ -104,13 +104,6 @@ const Orders = () => {
                     </p>
                   </div>
 
-                  <div className="item-price">
-                    ₹
-                    {(item.price || 0) *
-                      item.qty}
-                  </div>
-                </div>
-              ))}
                   {order.status === "Delivered" && (
   <button
     className="review-btn"
@@ -128,6 +121,14 @@ const Orders = () => {
     Review Product
   </button>
 )}
+
+                  <div className="item-price">
+                    ₹
+                    {(item.price || 0) *
+                      item.qty}
+                  </div>
+                </div>
+              ))}
 
               {/* Address */}
               {/* Address */}
